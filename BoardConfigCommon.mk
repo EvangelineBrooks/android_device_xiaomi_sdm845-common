@@ -13,18 +13,13 @@ BOARD_VNDK_VERSION := current
 PRODUCT_SHIPPING_API_LEVEL := 27
 TARGET_NO_KERNEL := false
 BOARD_AVB_ENABLE := false
-BOARD_BUILD_DISABLED_VBMETAIMAGE := true
-BOARD_SEPOLICY_VERS := 30
 BOARD_USES_VENDORIMAGE := true
 
 TARGET_USE_SDCLANG := true
 TARGET_OTA_ASSERT_DEVICE := polaris
-TARGET_KERNEL_VERSION := 4.9
-TARGET_KERNEL_CLANG_COMPILE := false
 TARGET_BOOTLOADER_BOARD_NAME := sdm845
 TARGET_NO_BOOTLOADER := true
 #TARGET_PLATFORM_DEVICE_BASE := /devices/soc.0/
-TARGET_NEEDS_DTBOIMAGE := true
 
 # Architecture
 TARGET_ARCH := arm64
@@ -42,18 +37,22 @@ TARGET_2ND_CPU_VARIANT := cortex-a9
 TARGET_USES_64_BIT_BINDER := true
 
 # Kernel
-BOARD_CUSTOM_BOOTIMG_MK := $(DEVICE_PATH)/mkbootimg.mk
 BOARD_KERNEL_BASE := 0x00000000
+BOARD_KERNEL_ALT_BASE := 0x00000000
 BOARD_KERNEL_CMDLINE := console=ttyMSM0,115200n8 earlycon=msm_geni_serial,0xA84000 androidboot.hardware=qcom androidboot.console=ttyMSM0 video=vfb:640x400,bpp=32,memsize=3072000 msm_rtb.filter=0x237 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 service_locator.enable=1 swiotlb=2048 androidboot.configfs=true androidboot.usbcontroller=a600000.dwc3
+BOARD_KERNEL_ALT_CMDLINE := console=ttyMSM0,115200n8 earlycon=msm_geni_serial,0xA84000 androidboot.hardware=qcom androidboot.console=ttyMSM0 video=vfb:640x400,bpp=32,memsize=3072000 msm_rtb.filter=0x237 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 service_locator.enable=1 swiotlb=2048 androidboot.configfs=true androidboot.usbcontroller=a600000.dwc3
 BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
-TARGET_KERNEL_APPEND_DTB := true
 BOARD_KERNEL_PAGESIZE := 4096
+BOARD_KERNEL_ALT_PAGESIZE := 4096
 BOARD_KERNEL_TAGS_OFFSET := 0x00000100
 BOARD_RAMDISK_OFFSET := 0x01000000
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
 TARGET_KERNEL_SOURCE := kernel/xiaomi/sdm845
-TARGET_PREBUILT_KERNEL := device/xiaomi/sdm845-common/prebuilt/zImage
+
+# Linaro
+KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/$(HOST_OS)-x86/aarch64/gcc-linaro-5.5.0/bin
+KERNEL_TOOLCHAIN_PREFIX := aarch64-linux-gnu-
 
 # Platform
 TARGET_BOARD_PLATFORM := sdm845
@@ -78,7 +77,7 @@ WITH_DEXPREOPT_BOOT_IMG_AND_SYSTEM_SERVER_ONLY ?= true
 
 # Graphics
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 2
-TARGET_USES_HWC2 := true
+TARGET_USES_HWC2 := false
 
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
@@ -122,6 +121,12 @@ BOARD_PROPERTY_OVERRIDES_SPLIT_ENABLED := true
 
 # QCOM
 BOARD_USES_QCOM_HARDWARE := true
+BOARD_USES_QC_TIME_SERVICES := true
+TARGET_USE_SDCLANG := true
+SDCLANG_LTO_DEFS := device/qcom/common/sdllvm-lto-defs.mk
+
+SDCLANG := true
+SDCLANG_PATH := prebuilts/snapdragon-llvm-4.0.2-linux64/toolchains/llvm-Snapdragon_LLVM_for_Android_4.0/prebuilt/linux-x86_64/bin
 
 # Recovery
 TARGET_RECOVERY_FSTAB := $(COMMON_PATH)/rootdir/etc/fstab.qcom
@@ -135,10 +140,6 @@ TARGET_RIL_VARIANT := caf
 
 # Sepolicy
 BOARD_PLAT_PRIVATE_SEPOLICY_DIR += $(COMMON_PATH)/sepolicy/private
-
-# Treble
-PRODUCT_COMPATIBILITY_MATRIX_LEVEL_OVERRIDE := 27
-PRODUCT_FULL_TREBLE_OVERRIDE := true
 
 # Inherit from the proprietary version
 -include vendor/xiaomi/sdm845-common/BoardConfigVendor.mk
