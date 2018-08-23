@@ -1,3 +1,11 @@
+-app/CtsShimPrebuilt/CtsShimPrebuilt.apk
+-app/QtiSystemService/QtiSystemService.apk
+-app/QtiTelephonyService/QtiTelephonyService.apk
+-app/datastatusnotification/datastatusnotification.apk
+app/ims/lib/arm64/ibimsmedia_jni.so
+app/ims/lib/arm64/libimscamera_jni.so
+-app/ims/ims.apk
+-app/uceShimService/uceShimService.apk
 bin/hw/android.hidl.allocator@1.0-service
 bin/acpi
 bin/am
@@ -711,7 +719,7 @@ etc/sysconfig/power-save-conf.xml
 etc/sysconfig/qti_whitelist.xml
 etc/textclassifier/textclassifier.langid.model
 etc/textclassifier/textclassifier.smartselection.en.model
-etc/WhetstonePermission/WhetstonePermission.apk
+-etc/WhetstonePermission/WhetstonePermission.apk
 etc/yellowpage/IN/ivr.zip
 etc/apns-conf.xml
 etc/appmanager.conf
@@ -1071,7 +1079,7 @@ framework/arm64/boot-voip-common.vdex
 framework/arm64/boot-WfdCommon.art
 framework/arm64/boot-WfdCommon.oat
 framework/arm64/boot-WfdCommon.vdex
-framework/framework-ext-res/framework-ext-res.apk
+-framework/framework-ext-res/framework-ext-res.apk
 framework/oat/arm/activation.odex
 framework/oat/arm/activation.vdex
 framework/oat/arm/am.odex
@@ -1390,7 +1398,7 @@ framework/ethernet-service.jar
 framework/eventbus.jar
 framework/ext.jar
 framework/framework.jar
-framework/framework-res.apk
+-framework/framework-res.apk
 framework/gson.jar
 framework/hid.jar
 framework/ime.jar
