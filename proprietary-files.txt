@@ -1,4 +1,5 @@
-bin/hw/android.hidl.allocator@1.0-servicebin/acpi
+bin/hw/android.hidl.allocator@1.0-service
+bin/acpi
 bin/am
 bin/applypatch
 bin/appops
